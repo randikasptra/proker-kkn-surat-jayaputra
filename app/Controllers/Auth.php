@@ -17,29 +17,38 @@ class Auth extends BaseController
     }
 
     public function loginProcess()
-    {
-        $session = session();
-        $userModel = new UserModel();
+{
+    $session = session();
+    $userModel = new \App\Models\UserModel();
 
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+    $nik = $this->request->getPost('nik');
+    $password = $this->request->getPost('password');
 
-        $user = $userModel->where('email', $email)->first();
+    $user = $userModel->where('nik', $nik)->first();
 
-        if ($user && password_verify($password, $user['password'])) {
+    if ($user) {
+        if ($user['role'] !== 'admin') {
+            return redirect()->back()->with('error', 'Akses hanya untuk admin.');
+        }
+
+        if (password_verify($password, $user['password'])) {
             $session->set([
                 'user_id'   => $user['id'],
                 'name'      => $user['name'],
-                'email'     => $user['email'],
+                'nik'       => $user['nik'],
                 'role'      => $user['role'],
                 'logged_in' => true
             ]);
 
             return redirect()->to('/dashboard');
         } else {
-            return redirect()->back()->with('error', 'Email atau password salah.');
+            return redirect()->back()->with('error', 'Password salah.');
         }
+    } else {
+        return redirect()->back()->with('error', 'NIK tidak ditemukan.');
     }
+}
+
 
     public function logout()
     {

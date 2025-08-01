@@ -18,8 +18,8 @@
 
         <form action="<?= base_url('/auth/loginProcess') ?>" method="post" class="space-y-5">
             <div>
-                <label for="nik" class="block text-sm font-medium text-gray-700">NIK</label>
-                <input type="text" name="nik" id="nik" required
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="username" id="username" required
                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
 
