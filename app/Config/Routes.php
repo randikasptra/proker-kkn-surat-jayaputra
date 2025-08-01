@@ -23,6 +23,11 @@ $routes->get('/settings', 'SettingsController::index');
 $routes->post('/settings/update', 'SettingsController::update');
 $routes->get('/surat', 'SuratController::index');
 $routes->post('/surat/kirim', 'SuratController::kirim');
+$routes->get('/laporan-surat', 'LaporanController::index');
+
+
+$routes->get('/users', 'UserController::index');
+$routes->post('/users/store', 'UserController::store');
 
 
 // Dashboard

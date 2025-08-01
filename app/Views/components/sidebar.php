@@ -21,7 +21,7 @@
       <span>Template Surat</span>
     </a>
 
-    <a href="/laporan" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
+    <a href="/laporan-surat" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
       <i class="fas fa-chart-bar mr-3 w-5 text-center text-blue-500"></i>
       <span>Laporan Surat</span>
     </a>
@@ -29,6 +29,11 @@
     <a href="/settings" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
       <i class="fas fa-cog mr-3 w-5 text-center text-blue-500"></i>
       <span>Pengaturan</span>
+    </a>
+
+    <a href="/tambah-akun" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
+      <i class="fas fa-user-plus mr-3 w-5 text-center text-blue-500"></i>
+      <span>Tambah Akun</span>
     </a>
 
     <div class="border-t border-gray-200 mt-4 pt-4">
