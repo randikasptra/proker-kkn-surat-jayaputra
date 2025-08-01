@@ -16,7 +16,7 @@
       <span>Daftar Pengajuan</span>
     </a>
 
-    <a href="/template-surat" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
+    <a href="/surat" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
       <i class="fas fa-file-alt mr-3 w-5 text-center text-blue-500"></i>
       <span>Template Surat</span>
     </a>

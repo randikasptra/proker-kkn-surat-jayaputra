@@ -21,6 +21,8 @@ $routes->post('/login', 'Auth::login');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/settings', 'SettingsController::index');
 $routes->post('/settings/update', 'SettingsController::update');
+$routes->get('/surat', 'SuratController::index');
+$routes->post('/surat/kirim', 'SuratController::kirim');
 
 
 // Dashboard
