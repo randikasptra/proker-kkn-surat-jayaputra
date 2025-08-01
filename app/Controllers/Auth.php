@@ -20,27 +20,35 @@ class Auth extends Controller
         return view('auth/login');
     }
 
-    public function login()
-    {
-        $nik      = $this->request->getPost('nik');
-        $password = $this->request->getPost('password');
+   public function login()
+{
+    $username = $this->request->getPost('username');
+    $password = $this->request->getPost('password');
 
-        $user = $this->userModel->where('nik', $nik)->first();
+    $user = $this->userModel->where('username', $username)->first();
 
-        if ($user && password_verify($password, $user['password'])) {
-            session()->set([
-                'user_id'   => $user['id'],
-                'nik'       => $user['nik'],
-                'name'      => $user['name'],
-                'role'      => $user['role'],
-                'logged_in' => true
-            ]);
-
-            return redirect()->to('/dashboard');
-        } else {
-            return redirect()->to('/login')->with('error', 'NIK atau Password salah');
-        }
+    if (!$user) {
+        die('Username tidak ditemukan'); // sementara, biar jelas
     }
+
+    if (!password_verify($password, $user['password'])) {
+        echo 'Password tidak cocok<br>';
+        echo 'Input Password: ' . $password . '<br>';
+        echo 'Password di DB (hashed): ' . $user['password'];
+        exit;
+    }
+
+    // Kalau lolos semua
+    session()->set([
+        'user_id'   => $user['id'],
+        'username'  => $user['username'],
+        'name'      => $user['name'],
+        'role'      => $user['role'],
+        'logged_in' => true
+    ]);
+    return redirect()->to('/dashboard');
+}
+
 
     public function logout()
     {

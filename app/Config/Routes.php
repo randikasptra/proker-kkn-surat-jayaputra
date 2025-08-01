@@ -6,21 +6,19 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// Akses root URL → redirect sesuai session login
+// Redirect root ke login atau dashboard
 $routes->get('/', function () {
     if (session()->get('logged_in')) {
-        return redirect()->to('/dashboard');
+        return redirect()->to('dashboard');
     } else {
         return redirect()->to('/login');
     }
 });
 
-// Login
-$routes->get('/login', 'Auth::showLogin');      // tampilkan form login
-$routes->post('/login', 'Auth::login');         // proses login
-
-// Logout
-$routes->get('/logout', 'Auth::logout');        // logout user
+// Login Routes
+$routes->get('/login', 'Auth::showLogin');
+$routes->post('/login', 'Auth::login');
+$routes->get('/logout', 'Auth::logout');
 
 // Dashboard
-$routes->get('/dashboard', 'Dashboard::index'); // dashboard setelah login
+$routes->get('/dashboard', 'Dashboard::index');
