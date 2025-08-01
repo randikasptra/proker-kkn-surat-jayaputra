@@ -19,6 +19,9 @@ $routes->get('/', function () {
 $routes->get('/login', 'Auth::showLogin');
 $routes->post('/login', 'Auth::login');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/settings', 'SettingsController::index');
+$routes->post('/settings/update', 'SettingsController::update');
+
 
 // Dashboard
 $routes->get('/dashboard', 'Dashboard::index');
