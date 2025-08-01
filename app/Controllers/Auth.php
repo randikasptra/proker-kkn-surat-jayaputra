@@ -3,52 +3,44 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 
-class Auth extends BaseController
+class Auth extends Controller
 {
-    public function login()
-    {
-        // Kalau sudah login, langsung redirect ke dashboard
-        if (session()->get('logged_in')) {
-            return redirect()->to('/dashboard');
-        }
+    protected $userModel;
 
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        helper(['form', 'url']);
+    }
+
+    public function showLogin()
+    {
         return view('auth/login');
     }
 
-    public function loginProcess()
-{
-    $session = session();
-    $userModel = new \App\Models\UserModel();
+    public function login()
+    {
+        $nik      = $this->request->getPost('nik');
+        $password = $this->request->getPost('password');
 
-    $nik = $this->request->getPost('nik');
-    $password = $this->request->getPost('password');
+        $user = $this->userModel->where('nik', $nik)->first();
 
-    $user = $userModel->where('nik', $nik)->first();
-
-    if ($user) {
-        if ($user['role'] !== 'admin') {
-            return redirect()->back()->with('error', 'Akses hanya untuk admin.');
-        }
-
-        if (password_verify($password, $user['password'])) {
-            $session->set([
+        if ($user && password_verify($password, $user['password'])) {
+            session()->set([
                 'user_id'   => $user['id'],
-                'name'      => $user['name'],
                 'nik'       => $user['nik'],
+                'name'      => $user['name'],
                 'role'      => $user['role'],
                 'logged_in' => true
             ]);
 
             return redirect()->to('/dashboard');
         } else {
-            return redirect()->back()->with('error', 'Password salah.');
+            return redirect()->to('/login')->with('error', 'NIK atau Password salah');
         }
-    } else {
-        return redirect()->back()->with('error', 'NIK tidak ditemukan.');
     }
-}
-
 
     public function logout()
     {

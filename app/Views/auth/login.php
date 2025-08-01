@@ -2,41 +2,33 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Surat Desa</title>
+    <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex items-center justify-center">
-
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center text-blue-800 mb-6">Login - Sistem Surat Desa</h2>
-
-        <?php if (session()->getFlashdata('error')): ?>
-            <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm text-center">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-sm bg-white p-8 rounded shadow-md">
+        <h2 class="text-2xl font-bold text-center mb-6">Login Admin Desa</h2>
+        
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
                 <?= session()->getFlashdata('error') ?>
             </div>
         <?php endif; ?>
 
-        <form action="<?= base_url('/auth/loginProcess') ?>" method="post" class="space-y-5">
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" name="username" id="username" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <form action="<?= base_url('/login') ?>" method="post">
+            <div class="mb-4">
+                <label for="nik" class="block text-sm font-medium">NIK</label>
+                <input type="text" name="nik" id="nik" required
+                    class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
             </div>
-
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium">Password</label>
                 <input type="password" name="password" id="password" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
             </div>
-
             <button type="submit"
-                    class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
-                Masuk
-            </button>
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition">Login</button>
         </form>
-
-        <p class="text-center text-xs text-gray-500 mt-4">Belum punya akun? Hubungi admin desa.</p>
     </div>
-
 </body>
 </html>

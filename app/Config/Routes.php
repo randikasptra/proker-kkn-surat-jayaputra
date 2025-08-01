@@ -5,12 +5,22 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Auth::login'); // Saat buka root URL, langsung ke halaman login
 
-// Auth
-$routes->get('/login', 'Auth::login');
-$routes->post('/auth/loginProcess', 'Auth::loginProcess');
-$routes->get('/logout', 'Auth::logout');
+// Akses root URL → redirect sesuai session login
+$routes->get('/', function () {
+    if (session()->get('logged_in')) {
+        return redirect()->to('/dashboard');
+    } else {
+        return redirect()->to('/login');
+    }
+});
+
+// Login
+$routes->get('/login', 'Auth::showLogin');      // tampilkan form login
+$routes->post('/login', 'Auth::login');         // proses login
+
+// Logout
+$routes->get('/logout', 'Auth::logout');        // logout user
 
 // Dashboard
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/dashboard', 'Dashboard::index'); // dashboard setelah login
