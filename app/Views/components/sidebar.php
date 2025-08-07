@@ -1,5 +1,5 @@
 <!-- Sidebar Component -->
-<aside class="w-64 bg-white shadow-md flex flex-col min-h-screen">
+<aside class="w-64 bg-white shadow-md flex flex-col min-h-screen fixed">
   <div class="p-6 text-xl font-bold text-blue-600 border-b flex items-center">
     <i class="fas fa-landmark mr-2"></i>
     <span>Admin Desa Jayaputra</span>
@@ -9,6 +9,11 @@
     <a href="/dashboard" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
       <i class="fas fa-home mr-3 w-5 text-center text-blue-500"></i>
       <span>Dashboard</span>
+    </a>
+
+     <a href="/users" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
+      <i class="fas fa-user-plus mr-3 w-5 text-center text-blue-500"></i>
+      <span>Tambah Akun</span>
     </a>
 
     <a href="/pengajuan" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
@@ -31,10 +36,7 @@
       <span>Pengaturan</span>
     </a>
 
-    <a href="/tambah-akun" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
-      <i class="fas fa-user-plus mr-3 w-5 text-center text-blue-500"></i>
-      <span>Tambah Akun</span>
-    </a>
+   
 
     <div class="border-t border-gray-200 mt-4 pt-4">
       <a href="/logout" class="flex items-center px-4 py-2.5 rounded hover:bg-red-50 text-red-600 transition-colors duration-200">

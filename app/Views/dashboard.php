@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="max-w-7xl mx-auto mt-10 px-4">
+<div class="max-w-7xl mx-auto mt-10 px-4 ml-64">
     <div class="bg-white shadow rounded-xl p-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Dashboard</h1>
         <p class="text-gray-600 text-lg">Selamat datang di <strong>Halaman Admin Desa</strong>.</p>
