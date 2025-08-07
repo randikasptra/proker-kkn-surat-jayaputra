@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="max-w-7xl mx-auto mt-10 px-4">
+<div class="max-w-7xl mx-auto mt-10 px-4 ml-64">
     <div class="bg-white shadow rounded-xl p-6">
         <h1 class="text-2xl font-bold text-gray-800 mb-6">Laporan Surat</h1>
 

@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6 mt-10">
+<div class="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6 mt-10 ml-64">
     <h2 class="text-2xl font-bold mb-6 text-center">Form Permohonan Surat</h2>
 
     <?php if (session()->getFlashdata('success')): ?>

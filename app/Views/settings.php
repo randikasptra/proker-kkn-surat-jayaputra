@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4">
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 ml-64">
     <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md border border-gray-100">
         <div class="flex flex-col items-center mb-8">
             <div class="bg-blue-100 p-3 rounded-full mb-4">
