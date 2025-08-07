@@ -16,7 +16,7 @@
       <span>Tambah Akun</span>
     </a>
 
-    <a href="/pengajuan" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
+    <a href="/pengajuan-surat" class="flex items-center px-4 py-2.5 rounded hover:bg-blue-50 transition-colors duration-200">
       <i class="fas fa-inbox mr-3 w-5 text-center text-blue-500"></i>
       <span>Daftar Pengajuan</span>
     </a>
