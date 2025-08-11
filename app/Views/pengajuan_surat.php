@@ -42,17 +42,18 @@
             </tr>
         </thead>
         <tbody>
-        <?php if (is_array($pengajuan)): ?>
-            <?php foreach ($pengajuan as $index => $row): ?>
+        <?php if (!empty($pengajuan) && is_array($pengajuan)): ?>
+            <?php foreach ($pengajuan as $row): ?>
                 <tr>
-                    <td><?= esc($row['Nama Lengkap'] ?? '-') ?></td>
-                    <td><?= esc($row['NIK'] ?? '-') ?></td>
-                    <td><?= esc($row['Timestamp'] ?? '-') ?></td>
-                    <td>SKTM</td>
+                    <td><?= esc($row['nama']) ?></td>
+                    <td><?= esc($row['nik']) ?></td>
+                    <td><?= esc($row['tanggal_pengajuan']) ?></td>
+                    <td><?= esc($row['jenis_surat']) ?></td>
                     <td>
                         <button class="btn btn-primary">Lihat</button>
                         <button class="btn btn-primary">Print</button>
-                        <button class="btn btn-danger" onclick="hapusRow(this)">Hapus</button>
+<button class="btn btn-danger" onclick="hapusRow(<?= $row['id'] ?>, this)">Hapus</button>
+
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -74,5 +75,31 @@ function hapusRow(button) {
     }
 }
 </script>
+<script>
+function hapusRow(id, button) {
+    if (confirm("Yakin ingin menghapus data ini dari database?")) {
+        fetch(`/pengajuan-surat/${id}`, { // <-- Sesuai route
+            method: 'DELETE',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                button.closest("tr").remove();
+                alert("Data berhasil dihapus");
+            } else {
+                alert("Gagal menghapus data");
+            }
+        })
+        .catch(err => {
+            alert("Terjadi kesalahan: " + err);
+        });
+    }
+}
+</script>
+
 
 <?= $this->endSection() ?>

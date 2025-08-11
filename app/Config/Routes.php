@@ -26,6 +26,14 @@ $routes->post('/surat/kirim', 'SuratController::kirim');
 $routes->get('/laporan-surat', 'LaporanController::index');
 
 $routes->get('/pengajuan-surat', 'PengajuanController::index');
+$routes->post('/pengajuan/api-import', 'PengajuanController::apiImport');
+
+
+// $routes->delete('/pengajuan/(:num)', 'PengajuanController::delete/$1');
+$routes->delete('/pengajuan-surat/(:num)', 'PengajuanController::delete/$1');
+
+
+
 
 
 
