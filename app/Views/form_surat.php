@@ -29,7 +29,7 @@
 
 
         <!-- Domisili -->
-        <a href="<?= base_url('/surat/form/domisili') ?>" 
+        <a href="<?= base_url('/surat/form_domisili') ?>" 
            class="group p-6 border rounded-lg hover:shadow-lg hover:border-blue-500 transition">
             <div class="flex flex-col items-center text-center">
                 <div class="bg-green-100 text-green-600 p-4 rounded-full mb-4">

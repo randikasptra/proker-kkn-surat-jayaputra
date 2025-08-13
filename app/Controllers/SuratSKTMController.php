@@ -9,17 +9,22 @@ class SuratSKTMController extends BaseController
 {
     public function index()
     {
+        // Menampilkan form SKTM
         return view('surat/sktm_form');
     }
     
-
-    public function proses()
+    public function simpan()
     {
         $model = new SuratSKTMModel();
 
         $data = [
+            'jenis_surat'   => 'SKTM',
+            'nama'          => $this->request->getPost('nama'),
+            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'nik'           => $this->request->getPost('nik'),
             'alamat'        => $this->request->getPost('alamat'),
-            'pekerjaan'     => $this->request->getPost('pekerjaan'),
             'keperluan'     => $this->request->getPost('keperluan'),
             'tanggal_surat' => date('Y-m-d'),
         ];
@@ -28,18 +33,20 @@ class SuratSKTMController extends BaseController
 
         $id = $model->getInsertID();
 
-        return redirect()->to('/surat-sktm/cetak/'.$id);
+        // Redirect ke halaman preview (siap cetak)
+        return redirect()->to('/surat-sktm/cetak/' . $id);
     }
 
-    public function cetak($id)
-    {
-        $model = new SuratSKTMModel();
-        $surat = $model->find($id);
+  public function cetak($id)
+{
+    $model = new SuratSKTMModel();
+    $data['sktm'] = $model->find($id);
 
-        if (!$surat) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Surat SKTM tidak ditemukan.");
-        }
-
-        return view('surat/sktm_preview', ['surat' => $surat]);
+    if (!$data['sktm']) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException("Data SKTM tidak ditemukan");
     }
+
+    return view('surat/sktm_cetak', $data);
+}
+
 }

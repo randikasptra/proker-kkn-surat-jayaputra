@@ -37,8 +37,7 @@ $routes->get('/pengajuan', 'PengajuanController::index');
 $routes->get('/pengajuan/import', 'PengajuanController::importFromSheet');
 $routes->post('/pengajuan/delete/(:num)', 'PengajuanController::delete/$1');
 
-
-// 🔹 Tambahan: Sinkronisasi dari Google Sheet
+// 🔹 Sinkronisasi dari Google Sheet
 $routes->get('/pengajuan-surat/sync', 'PengajuanController::syncFromSheet');
 
 // User Routes
@@ -49,11 +48,16 @@ $routes->post('/users/store', 'UserController::store');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/import-sheet', 'PengajuanController::import');
 
+// 🔹 Grup Surat
 $routes->group('surat', function($routes) {
     $routes->get('/', 'SuratController::index');
-    $routes->get('form_sktm', 'SuratSKTMController::index');
-    $routes->post('proses_sktm', 'SuratSKTMController::proses');
-    $routes->get('cetak_sktm/(:num)', 'SuratSKTMController::cetak/$1');
+
+    // SKTM
+    $routes->get('form_sktm', 'SuratSKTMController::index'); // tampil form
+    $routes->get('form_domisili', 'SuratDomisiliController::index'); // tampil form
+    $routes->post('sktm/save', 'SuratSKTMController::simpan'); // simpan data
+    $routes->get('sktm/preview/(:num)', 'SuratSKTMController::cetak/$1'); // preview & cetak
 });
 
 
+$routes->get('surat-sktm/cetak/(:num)', 'SuratSKTMController::cetak/$1');
