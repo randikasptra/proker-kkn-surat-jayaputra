@@ -45,17 +45,18 @@
         <?php endif; ?>
 
         <form action="<?= base_url('/login') ?>" method="post">
-            <div class="mb-4">
-                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i class="fas fa-user text-gray-400"></i>
-                    </div>
-                    <input type="text" name="username" id="username" required
-                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-sm placeholder-gray-400"
-                        placeholder="Masukkan username">
-                </div>
-            </div>
+           <div class="mb-4">
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-envelope text-gray-400"></i>
+        </div>
+        <input type="email" name="email" id="email" required
+            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-sm placeholder-gray-400"
+            placeholder="Masukkan email">
+    </div>
+</div>
+
 
             <div class="mb-6">
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>

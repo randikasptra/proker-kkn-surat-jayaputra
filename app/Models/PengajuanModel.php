@@ -12,6 +12,10 @@ class PengajuanModel extends Model
         'nama',
         'nik',
         'tanggal_pengajuan',
-        'jenis_surat'
+        'jenis_surat',
+        'alamat',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'keterangan'
     ];
 }

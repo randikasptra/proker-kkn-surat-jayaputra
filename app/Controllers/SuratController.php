@@ -9,19 +9,30 @@ class SuratController extends BaseController
         return view('form_surat');
     }
 
-    public function kirim()
+    public function simpan()
     {
-        $nama = $this->request->getPost('nama');
-        $nik = $this->request->getPost('nik');
-        $jenis_surat = $this->request->getPost('jenis_surat');
+        $model = new SuratModel();
 
-        // Validasi sederhana (bisa ditambahkan lagi)
-        if (!$nama || !$nik || !$jenis_surat) {
-            return redirect()->back()->with('error', 'Semua field wajib diisi.');
-        }
+        $model->insert([
+            'jenis_surat'   => $this->request->getPost('jenis_surat'),
+            'nama'          => $this->request->getPost('nama'),
+            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'nik'           => $this->request->getPost('nik'),
+            'alamat'        => $this->request->getPost('alamat'),
+            'keperluan'     => $this->request->getPost('keperluan'),
+            'tanggal_surat' => $this->request->getPost('tanggal_surat'),
+        ]);
 
-        // Simpan ke database atau proses sesuai jenis_surat
-        // Sementara ini kita tampilkan flashdata aja
-        return redirect()->to('/surat')->with('success', 'Permohonan surat berhasil dikirim.');
+        return redirect()->to('/surat/cetak/' . $model->getInsertID());
+    }
+
+    public function cetak($id)
+    {
+        $model = new SuratModel();
+        $data['surat'] = $model->find($id);
+
+        return view('surat/cetak', $data);
     }
 }
