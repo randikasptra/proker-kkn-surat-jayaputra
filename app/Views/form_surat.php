@@ -45,7 +45,7 @@
         </a>
 
         <!-- Pengantar KTP -->
-        <a href="<?= base_url('/surat/form/pengantar_ktp') ?>" 
+        <a href="<?= base_url('/surat/form_ktp') ?>" 
            class="group p-6 border rounded-lg hover:shadow-lg hover:border-blue-500 transition">
             <div class="flex flex-col items-center text-center">
                 <div class="bg-yellow-100 text-yellow-600 p-4 rounded-full mb-4">
