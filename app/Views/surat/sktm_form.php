@@ -1,115 +1,110 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden mt-10 ml-96">
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
-        <h2 class="text-3xl font-bold text-center flex items-center justify-center gap-3">
-            <i class="fas fa-file-alt"></i>
-            Form Surat Keterangan Tidak Mampu (SKTM)
-        </h2>
+<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow mt-6 ">
+    <h2 class="text-2xl font-semibold mb-4">Form Surat SKTM</h2>
+
+    <?php if(session()->getFlashdata('success')): ?>
+        <div class="bg-green-100 text-green-800 p-2 rounded mb-4">
+            <?= session()->getFlashdata('success') ?>
+        </div>
+    <?php endif; ?>
+
+   <form action="<?= base_url('surat-sktm/simpan') ?>" method="post" class="space-y-4">
+
+    <!-- Nama -->
+    <div>
+        <label class="block font-medium">Nama</label>
+        <input type="text" name="nama" class="border w-full p-2 rounded" required>
     </div>
 
-        <form action="<?= base_url('surat/sktm/save') ?>" method="post" class="px-24  my-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Kolom 1 -->
-            <div class="space-y-6">
-                <!-- Nama Lengkap -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-user text-blue-600"></i>
-                        Nama Lengkap
-                    </label>
-                    <input type="text" name="nama" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                </div>
+    <!-- NIK -->
+    <div>
+        <label class="block font-medium">NIK</label>
+        <input type="text" name="nik" class="border w-full p-2 rounded" required>
+    </div>
 
-                <!-- Tempat Lahir -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-map-marker-alt text-blue-600"></i>
-                        Tempat Lahir
-                    </label>
-                    <input type="text" name="tempat_lahir" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                </div>
+    <!-- KK -->
+    <div>
+        <label class="block font-medium">No. KK</label>
+        <input type="text" name="kk" class="border w-full p-2 rounded" required>
+    </div>
 
-                <!-- Tanggal Lahir -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-calendar-day text-blue-600"></i>
-                        Tanggal Lahir
-                    </label>
-                    <input type="date" name="tanggal_lahir" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                </div>
+    <!-- Jenis Kelamin -->
+    <div>
+        <label class="block font-medium">Jenis Kelamin</label>
+        <select name="jenis_kelamin" class="border w-full p-2 rounded" required>
+            <option value="">-- Pilih --</option>
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
+        </select>
+    </div>
 
-                <!-- Jenis Kelamin -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-venus-mars text-blue-600"></i>
-                        Jenis Kelamin
-                    </label>
-                    <select name="jenis_kelamin" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                        <option value="">-- Pilih --</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Kolom 2 -->
-            <div class="space-y-6">
-                <!-- NIK -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-id-card text-blue-600"></i>
-                        NIK
-                    </label>
-                    <input type="text" name="nik" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                </div>
-
-                <!-- Alamat -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-home text-blue-600"></i>
-                        Alamat
-                    </label>
-                    <textarea name="alamat" rows="3" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"></textarea>
-                </div>
-
-                <!-- Keperluan -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-clipboard-list text-blue-600"></i>
-                        Keperluan
-                    </label>
-                    <textarea name="keperluan" rows="3" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"></textarea>
-                </div>
-
-                <!-- Tanggal Surat -->
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                        <i class="fas fa-calendar-check text-blue-600"></i>
-                        Tanggal Surat
-                    </label>
-                    <input type="date" name="tanggal_surat" required 
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                </div>
-            </div>
+    <!-- Tempat dan Tanggal Lahir -->
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <label class="block font-medium">Tempat Lahir</label>
+            <input type="text" name="tempat_lahir" class="border w-full p-2 rounded" required>
         </div>
-
-        <!-- Submit Button -->
-        <div class="mt-10 text-center">
-            <button type="submit" 
-                class="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-8 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center gap-2 mx-auto">
-                <i class="fas fa-save"></i>
-                Simpan & Cetak
-            </button>
+        <div>
+            <label class="block font-medium">Tanggal Lahir</label>
+            <input type="date" name="tanggal_lahir" class="border w-full p-2 rounded" required>
         </div>
-    </form>
+    </div>
+
+    <!-- Agama -->
+    <div>
+        <label class="block font-medium">Agama</label>
+        <input type="text" name="agama" class="border w-full p-2 rounded" required>
+    </div>
+
+    <!-- Status Perkawinan -->
+    <div>
+        <label class="block font-medium">Status Perkawinan</label>
+        <select name="status_perkawinan" class="border w-full p-2 rounded" required>
+            <option value="">-- Pilih --</option>
+            <option value="Kawin">Kawin</option>
+            <option value="Belum Kawin">Belum Kawin</option>
+            <option value="Cerai Hidup">Cerai Hidup</option>
+            <option value="Cerai Mati">Cerai Mati</option>
+        </select>
+    </div>
+
+    <!-- Alamat -->
+    <div>
+        <label class="block font-medium">Alamat</label>
+        <textarea name="alamat" rows="3" class="border w-full p-2 rounded" required></textarea>
+    </div>
+
+    <!-- Status Pekerjaan -->
+    <div>
+        <label class="block font-medium">Status Pekerjaan</label>
+        <input type="text" name="status_pekerjaan" class="border w-full p-2 rounded" required>
+    </div>
+
+    <!-- Desil -->
+    <div>
+        <label class="block font-medium">Desil</label>
+        <input type="text" name="desil" class="border w-full p-2 rounded" required>
+    </div>
+
+    <!-- Penghasilan -->
+    <div>
+        <label class="block font-medium">Penghasilan</label>
+        <input type="number" name="penghasilan" class="border w-full p-2 rounded">
+    </div>
+
+    <!-- Keperluan -->
+    <div>
+        <label class="block font-medium">Keperluan</label>
+        <textarea name="keperluan" rows="3" class="border w-full p-2 rounded" required></textarea>
+    </div>
+
+    <!-- Tombol -->
+    <div class="flex gap-4">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan</button>
+    </div>
+</form>
+
 </div>
 <?= $this->endSection() ?>

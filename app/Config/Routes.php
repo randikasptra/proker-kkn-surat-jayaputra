@@ -58,6 +58,9 @@ $routes->group('surat', function($routes) {
     $routes->post('sktm/save', 'SuratSKTMController::simpan'); // simpan data
     $routes->get('sktm/preview/(:num)', 'SuratSKTMController::cetak/$1'); // preview & cetak
 });
+$routes->post('surat-sktm/simpan', 'SuratSKTMController::simpan');
 
+$routes->get('/surat-domisili', 'SuratDomisiliController::index');
+$routes->post('/surat-domisili/simpan', 'SuratDomisiliController::simpan');
 
 $routes->get('surat-sktm/cetak/(:num)', 'SuratSKTMController::cetak/$1');

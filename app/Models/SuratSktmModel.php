@@ -16,15 +16,19 @@ class SuratSktmModel extends Model
     protected $allowedFields    = [
         'jenis_surat',
         'nama',
+        'nik',
+        'kk',
+        'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
-        'jenis_kelamin',
-        'nik',
+        'agama',
+        'status_perkawinan',
         'alamat',
+        'status_pekerjaan',
+        'desil',
+        'penghasilan',
         'keperluan',
-        'tanggal_surat',
-        'created_at',
-        'updated_at'
+        'tanggal_surat'
     ];
 
     // Gunakan timestamp bawaan CI4
