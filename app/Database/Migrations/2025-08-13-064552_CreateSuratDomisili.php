@@ -24,7 +24,8 @@ class CreateSuratDomisili extends Migration
                 'constraint' => '50'
             ],
             'tanggal_lahir' => [
-                'type' => 'DATE'
+                'type' => 'DATE',
+                'null' => true // ✅ biar bisa kosong
             ],
             'jenis_kelamin' => [
                 'type'       => 'ENUM',
@@ -54,7 +55,7 @@ class CreateSuratDomisili extends Migration
             ],
             'tanggal_pengajuan' => [
                 'type' => 'DATE',
-                'null' => true
+                'null' => true // ✅ biar bisa kosong
             ],
             'status' => [
                 'type'       => 'ENUM',
