@@ -77,7 +77,7 @@
         </a>
 
         <!-- Kelahiran -->
-        <a href="<?= base_url('/surat/form/kelahiran') ?>" 
+        <a href="<?= base_url('/surat/kelahiran_form') ?>" 
            class="group p-6 border rounded-lg hover:shadow-lg hover:border-blue-500 transition">
             <div class="flex flex-col items-center text-center">
                 <div class="bg-pink-100 text-pink-600 p-4 rounded-full mb-4">

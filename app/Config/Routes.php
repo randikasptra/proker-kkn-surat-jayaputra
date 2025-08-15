@@ -93,3 +93,11 @@ $routes->group('surat', function($routes) {
     $routes->get('sku/cetak/(:num)', 'SuratSKUController::cetak/$1');
 });
 $routes->post('sku/simpan', 'SuratSKUController::simpan');
+
+
+// Surat Kelahiran
+$routes->group('surat', function($routes) {
+    $routes->get('kelahiran_form', 'SuratKelahiranController::index');
+    $routes->post('kelahiran/simpan', 'SuratKelahiranController::simpan');
+    $routes->get('kelahiran/cetak/(:num)', 'SuratKelahiranController::cetak/$1');
+});
