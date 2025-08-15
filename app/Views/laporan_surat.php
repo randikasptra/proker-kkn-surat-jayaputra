@@ -30,7 +30,10 @@
                     <?php foreach ($laporan as $i => $row): ?>
                         <tr>
                             <td class="border border-gray-300 px-4 py-2"><?= $i + 1 ?></td>
-                            <td class="border border-gray-300 px-4 py-2"><?= esc($row['nama']) ?></td>
+                           <td class="border border-gray-300 px-4 py-2">
+    <?= esc($row['nama'] ?? ($row['nama_bayi'] ?? '-')) ?>
+</td>
+
                             <td class="border border-gray-300 px-4 py-2"><?= esc($row['jenis_surat']) ?></td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <?= date('d F Y', strtotime($row['tanggal_permohonan'])) ?>

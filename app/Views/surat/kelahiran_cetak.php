@@ -28,7 +28,7 @@
 </div>
 
 <h3 class="judul-surat">SURAT KETERANGAN KELAHIRAN</h3>
-<p class="nomor-surat">Nomor : ....../....../....../<?= date('Y') ?></p>
+<p class="nomor-surat">Nomor : 474.1/SS.04./Des-2008/V/2025</p>
 
 <div class="isi">
     <p>Yang bertanda tangan di bawah ini Kepala Desa Jayaputra Kecamatan Sariwangi Kabupaten Tasikmalaya menerangkan bahwa pada:</p>

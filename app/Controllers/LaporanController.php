@@ -5,16 +5,18 @@ namespace App\Controllers;
 use App\Models\SuratSKTMModel;
 use App\Models\SuratDomisiliModel;
 use App\Models\SuratKTPModel;
-use App\Models\SuratSKUModel; // Tambahan untuk SKU
+use App\Models\SuratSKUModel;
+use App\Models\SuratKelahiranModel; // Tambahan untuk kelahiran
 
 class LaporanController extends BaseController
 {
     public function index()
     {
-        $sktmModel     = new SuratSKTMModel();
-        $domisiliModel = new SuratDomisiliModel();
-        $ktpModel      = new SuratKTPModel();
-        $skuModel      = new SuratSKUModel(); // Tambahan
+        $sktmModel      = new SuratSKTMModel();
+        $domisiliModel  = new SuratDomisiliModel();
+        $ktpModel       = new SuratKTPModel();
+        $skuModel       = new SuratSKUModel();
+        $kelahiranModel = new SuratKelahiranModel(); // Tambahan
 
         // Ambil data SKTM
         $dataSktm = $sktmModel->findAll();
@@ -52,8 +54,17 @@ class LaporanController extends BaseController
             $item['link_hapus']         = base_url('laporan/hapus/sku/' . $item['id']);
         }
 
+        // Ambil data Kelahiran
+        $dataKelahiran = $kelahiranModel->findAll();
+        foreach ($dataKelahiran as &$item) {
+            $item['jenis_surat']        = 'Surat Keterangan Kelahiran';
+            $item['tanggal_permohonan'] = $item['tanggal_pengajuan'] ?? $item['created_at'];
+            $item['link_cetak']         = base_url('surat/kelahiran/cetak/' . $item['id']);
+            $item['link_hapus']         = base_url('laporan/hapus/kelahiran/' . $item['id']);
+        }
+
         // Gabung semua surat
-        $laporan = array_merge($dataSktm, $dataDomisili, $dataKTP, $dataSKU);
+        $laporan = array_merge($dataSktm, $dataDomisili, $dataKTP, $dataSKU, $dataKelahiran);
 
         // Urutkan dari terbaru
         usort($laporan, function ($a, $b) {
@@ -72,7 +83,9 @@ class LaporanController extends BaseController
         } elseif ($jenis === 'ktp') {
             $model = new SuratKTPModel();
         } elseif ($jenis === 'sku') {
-            $model = new SuratSKUModel(); // Tambahan untuk hapus SKU
+            $model = new SuratSKUModel();
+        } elseif ($jenis === 'kelahiran') {
+            $model = new SuratKelahiranModel(); // Tambahan hapus kelahiran
         } else {
             return redirect()->to('/laporan-surat')->with('error', 'Jenis surat tidak valid');
         }
