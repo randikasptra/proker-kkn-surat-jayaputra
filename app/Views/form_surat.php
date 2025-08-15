@@ -61,7 +61,7 @@
         </a>
 
         <!-- SKU -->
-        <a href="<?= base_url('/surat/form/sku') ?>" 
+        <a href="<?= base_url('/surat/sku_form') ?>" 
            class="group p-6 border rounded-lg hover:shadow-lg hover:border-blue-500 transition">
             <div class="flex flex-col items-center text-center">
                 <div class="bg-purple-100 text-purple-600 p-4 rounded-full mb-4">

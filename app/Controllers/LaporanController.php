@@ -4,7 +4,8 @@ namespace App\Controllers;
 
 use App\Models\SuratSKTMModel;
 use App\Models\SuratDomisiliModel;
-use App\Models\SuratKTPModel; // Tambahan
+use App\Models\SuratKTPModel;
+use App\Models\SuratSKUModel; // Tambahan untuk SKU
 
 class LaporanController extends BaseController
 {
@@ -12,7 +13,8 @@ class LaporanController extends BaseController
     {
         $sktmModel     = new SuratSKTMModel();
         $domisiliModel = new SuratDomisiliModel();
-        $ktpModel      = new SuratKTPModel(); // Tambahan
+        $ktpModel      = new SuratKTPModel();
+        $skuModel      = new SuratSKUModel(); // Tambahan
 
         // Ambil data SKTM
         $dataSktm = $sktmModel->findAll();
@@ -41,8 +43,17 @@ class LaporanController extends BaseController
             $item['link_hapus']         = base_url('laporan/hapus/ktp/' . $item['id']);
         }
 
+        // Ambil data SKU
+        $dataSKU = $skuModel->findAll();
+        foreach ($dataSKU as &$item) {
+            $item['jenis_surat']        = 'Surat Keterangan Usaha';
+            $item['tanggal_permohonan'] = $item['tanggal_pengajuan'] ?? $item['created_at'];
+            $item['link_cetak']         = base_url('surat/sku/cetak/' . $item['id']);
+            $item['link_hapus']         = base_url('laporan/hapus/sku/' . $item['id']);
+        }
+
         // Gabung semua surat
-        $laporan = array_merge($dataSktm, $dataDomisili, $dataKTP);
+        $laporan = array_merge($dataSktm, $dataDomisili, $dataKTP, $dataSKU);
 
         // Urutkan dari terbaru
         usort($laporan, function ($a, $b) {
@@ -59,7 +70,9 @@ class LaporanController extends BaseController
         } elseif ($jenis === 'domisili') {
             $model = new SuratDomisiliModel();
         } elseif ($jenis === 'ktp') {
-            $model = new SuratKTPModel(); // Tambahan untuk hapus KTP
+            $model = new SuratKTPModel();
+        } elseif ($jenis === 'sku') {
+            $model = new SuratSKUModel(); // Tambahan untuk hapus SKU
         } else {
             return redirect()->to('/laporan-surat')->with('error', 'Jenis surat tidak valid');
         }

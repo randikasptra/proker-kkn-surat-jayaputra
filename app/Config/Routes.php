@@ -86,3 +86,10 @@ $routes->get('surat-domisili/cetak/(:num)', 'SuratDomisiliController::cetak/$1')
 
 
 
+// SKU
+$routes->group('surat', function($routes) {
+    // Form SKU
+    $routes->get('sku_form', 'SuratSKUController::index');
+    $routes->get('sku/cetak/(:num)', 'SuratSKUController::cetak/$1');
+});
+$routes->post('sku/simpan', 'SuratSKUController::simpan');
