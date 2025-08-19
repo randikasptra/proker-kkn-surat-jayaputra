@@ -15,6 +15,21 @@
             </div>
         <?php endif; ?>
 
+        <!-- Filter Form -->
+        <form method="get" class="mb-4 flex flex-wrap gap-2">
+            <select name="jenis_surat" class="border rounded p-2">
+                <option value="">-- Semua Jenis --</option>
+                <option value="Surat Keterangan Tidak Mampu" <?= ($jenis ?? '') === 'Surat Keterangan Tidak Mampu' ? 'selected' : '' ?>>SKTM</option>
+                <option value="Surat Keterangan Domisili" <?= ($jenis ?? '') === 'Surat Keterangan Domisili' ? 'selected' : '' ?>>Domisili</option>
+                <option value="Surat Permohonan KTP" <?= ($jenis ?? '') === 'Surat Permohonan KTP' ? 'selected' : '' ?>>KTP</option>
+                <option value="Surat Keterangan Usaha" <?= ($jenis ?? '') === 'Surat Keterangan Usaha' ? 'selected' : '' ?>>SKU</option>
+                <option value="Surat Keterangan Kelahiran" <?= ($jenis ?? '') === 'Surat Keterangan Kelahiran' ? 'selected' : '' ?>>Kelahiran</option>
+            </select>
+
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Filter</button>
+            <a href="<?= base_url('laporan-surat') ?>" class="bg-gray-400 text-white px-4 py-2 rounded">Reset</a>
+        </form>
+
         <table class="w-full border-collapse border border-gray-300">
             <thead class="bg-gray-100">
                 <tr>
@@ -30,10 +45,9 @@
                     <?php foreach ($laporan as $i => $row): ?>
                         <tr>
                             <td class="border border-gray-300 px-4 py-2"><?= $i + 1 ?></td>
-                           <td class="border border-gray-300 px-4 py-2">
-    <?= esc($row['nama'] ?? ($row['nama_bayi'] ?? '-')) ?>
-</td>
-
+                            <td class="border border-gray-300 px-4 py-2">
+                                <?= esc($row['nama'] ?? ($row['nama_bayi'] ?? '-')) ?>
+                            </td>
                             <td class="border border-gray-300 px-4 py-2"><?= esc($row['jenis_surat']) ?></td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <?= date('d F Y', strtotime($row['tanggal_permohonan'])) ?>

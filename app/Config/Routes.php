@@ -101,3 +101,5 @@ $routes->group('surat', function($routes) {
     $routes->post('kelahiran/simpan', 'SuratKelahiranController::simpan');
     $routes->get('kelahiran/cetak/(:num)', 'SuratKelahiranController::cetak/$1');
 });
+
+

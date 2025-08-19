@@ -21,33 +21,31 @@ class Auth extends Controller
     }
 
     public function login()
-    {
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+{
+    $email = $this->request->getPost('email');
+    $password = $this->request->getPost('password');
 
-        $user = $this->userModel->where('email', $email)->first();
+    $user = $this->userModel->where('email', $email)->first();
 
-        if (!$user) {
-            die('Email tidak ditemukan'); // sementara, biar jelas
-        }
-
-        if (!password_verify($password, $user['password'])) {
-            echo 'Password tidak cocok<br>';
-            echo 'Input Password: ' . $password . '<br>';
-            echo 'Password di DB (hashed): ' . $user['password'];
-            exit;
-        }
-
-        session()->set([
-            'user_id'   => $user['id'],
-            'email'     => $user['email'],
-            'name'      => $user['name'],
-            'role'      => $user['role'],
-            'logged_in' => true
-        ]);
-
-        return redirect()->to('/dashboard');
+    if (!$user) {
+        return redirect()->back()->withInput()->with('error', 'Email tidak ditemukan.');
     }
+
+    if (!password_verify($password, $user['password'])) {
+        return redirect()->back()->withInput()->with('error', 'Password salah.');
+    }
+
+    session()->set([
+        'user_id'   => $user['id'],
+        'email'     => $user['email'],
+        'name'      => $user['name'],
+        'role'      => $user['role'],
+        'logged_in' => true
+    ]);
+
+    return redirect()->to('/dashboard');
+}
+
 
 
 
