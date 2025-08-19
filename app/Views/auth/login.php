@@ -73,7 +73,7 @@
     <div class="relative flex items-center space-x-8">
         <div class="relative group transition-transform duration-300 hover:scale-110">
             <div class="absolute -inset-0.5 rounded-lg bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <img src="<?= base_url('images/logo-desa.png') ?>" alt="Logo Desa" class="relative w-14 h-14 object-contain">
+            <img src="<?= base_url('LogoJayputra.jpg') ?>" alt="Logo Desa" class="relative w-14 h-14 object-contain">
         </div>
         <div class="relative group transition-transform duration-300 hover:scale-110">
             <div class="absolute -inset-0.5 rounded-lg bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

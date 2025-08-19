@@ -60,12 +60,17 @@
 
     <p>Demikian surat keterangan ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
 
-    <div class="ttd">
-        <p>Jayaputra, <?= date('d F Y', strtotime($sku['tanggal_pengajuan'])) ?></p>
-        <p>Kepala Desa Jayaputra</p>
-        <br><br>
-        <p><b>(_________________________)</b></p>
-    </div>
+   <div class="ttd">
+    <?php
+    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+    $tanggalIndo = $formatter->format(new DateTime($sku['tanggal_pengajuan']));
+    ?>
+    <p>Jayaputra, <?= $tanggalIndo ?></p>
+    <p>Kepala Desa Jayaputra</p>
+    <br><br>
+    <p><b>(_________________________)</b></p>
+</div>
+
 </div>
 
 <script>
