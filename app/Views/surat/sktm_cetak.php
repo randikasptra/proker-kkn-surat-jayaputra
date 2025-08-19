@@ -53,11 +53,17 @@
     <p>Demikian surat keterangan ini kami buat untuk dipergunakan sebagaimana mestinya.</p>
 
     <div class="ttd">
-        <p>Jayaputra, <?= date('d F Y', strtotime($sktm['tanggal_surat'])) ?></p>
-        <p>Kepala Desa Jayaputra</p>
-        <br><br>
-        <p><b>(_________________________)</b></p>
-    </div>
+    <?php
+    // Format tanggal ke bahasa Indonesia
+    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+    $tanggalIndo = $formatter->format(new DateTime($sktm['tanggal_surat']));
+    ?>
+    <p>Jayaputra, <?= $tanggalIndo ?></p>
+    <p>Kepala Desa Jayaputra</p>
+    <br><br>
+    <p><b>(_________________________)</b></p>
+</div>
+
 </div>
 
 <script>
