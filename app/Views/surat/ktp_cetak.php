@@ -36,7 +36,15 @@
     
     <table>
         <tr><td width="40%">Nama Lengkap</td><td>: <?= $ktp['nama'] ?></td></tr>
-        <tr><td>Tempat / Tanggal Lahir</td><td>: <?= $ktp['tempat_lahir'] ?>, <?= date('d-m-Y', strtotime($ktp['tanggal_lahir'])) ?></td></tr>
+        <tr><td>Tempat / Tanggal Lahir</td>
+            <td>:
+                <?php
+                $tglLahir = new DateTime($ktp['tanggal_lahir']);
+                $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+                echo $ktp['tempat_lahir'] . ', ' . $formatter->format($tglLahir);
+                ?>
+            </td>
+        </tr>
         <tr><td>Jenis Kelamin</td><td>: <?= $ktp['jenis_kelamin'] ?></td></tr>
         <tr><td>Agama</td><td>: <?= $ktp['agama'] ?></td></tr>
         <tr><td>Status Perkawinan</td><td>: <?= $ktp['status_perkawinan'] ?></td></tr>
@@ -54,7 +62,11 @@
     <p>Demikian surat keterangan ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
 
     <div class="ttd">
-        <p>Jayaputra, <?= date('d F Y', strtotime($ktp['tanggal_pengajuan'])) ?></p>
+        <?php
+        $tglPengajuan = new DateTime($ktp['tanggal_pengajuan']);
+        $tanggalIndo = $formatter->format($tglPengajuan);
+        ?>
+        <p>Jayaputra, <?= $tanggalIndo ?></p>
         <p>Kepala Desa Jayaputra</p>
         <br><br>
         <p><b>(_________________________)</b></p>
