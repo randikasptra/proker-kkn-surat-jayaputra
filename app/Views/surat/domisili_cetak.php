@@ -33,11 +33,18 @@
 <p class="nomor-surat">Nomor : 471.1/SS.04./Des-2008/V/2025</p>
 
 <div class="isi">
+    <?php 
+    // Formatter untuk bahasa Indonesia
+    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+    ?>
+
     <p>Yang bertanda tangan di bawah ini Kepala Desa Jayaputra Kecamatan Sariwangi Kabupaten Tasikmalaya menerangkan bahwa:</p>
     
     <table>
         <tr><td width="30%">Nama</td><td>: <?= $domisili['nama'] ?></td></tr>
-        <tr><td>Tempat/Tgl. Lahir</td><td>: <?= $domisili['tempat_lahir'] ?>, <?= date('d-m-Y', strtotime($domisili['tanggal_lahir'])) ?></td></tr>
+        <tr><td>Tempat/Tgl. Lahir</td>
+            <td>: <?= $domisili['tempat_lahir'] ?>, <?= $formatter->format(new DateTime($domisili['tanggal_lahir'])) ?></td>
+        </tr>
         <tr><td>Jenis Kelamin</td><td>: <?= $domisili['jenis_kelamin'] ?></td></tr>
         <tr><td>Agama</td><td>: <?= $domisili['agama'] ?></td></tr>
         <tr><td>Pekerjaan</td><td>: <?= $domisili['pekerjaan'] ?></td></tr>
@@ -50,7 +57,7 @@
     <p>Demikian surat keterangan ini kami buat untuk dipergunakan sebagaimana mestinya.</p>
 
     <div class="ttd">
-        <p>Jayaputra, <?= date('d F Y', strtotime($domisili['tanggal_pengajuan'])) ?></p>
+        <p>Jayaputra, <?= $formatter->format(new DateTime($domisili['tanggal_pengajuan'])) ?></p>
         <p>Kepala Desa Jayaputra</p>
         <br><br>
         <p><b>(_________________________)</b></p>
