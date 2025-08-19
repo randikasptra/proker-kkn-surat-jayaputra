@@ -31,12 +31,18 @@
 <p class="nomor-surat">Nomor : 474.1/SS.04./Des-2008/V/2025</p>
 
 <div class="isi">
+    <?php 
+    // Formatter untuk tanggal Indonesia
+    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+    ?>
+
     <p>Yang bertanda tangan di bawah ini Kepala Desa Jayaputra Kecamatan Sariwangi Kabupaten Tasikmalaya menerangkan bahwa pada:</p>
 
     <table>
         <tr><td>Nama Bayi</td><td>: <?= $kelahiran['nama_bayi'] ?></td></tr>
         <tr><td>Jenis Kelamin</td><td>: <?= $kelahiran['jenis_kelamin_bayi'] ?></td></tr>
-        <tr><td>Tempat/Tgl Lahir</td><td>: <?= $kelahiran['tempat_lahir_bayi'] ?>, <?= date('d-m-Y', strtotime($kelahiran['tanggal_lahir_bayi'])) ?></td></tr>
+        <tr><td>Tempat/Tgl Lahir</td>
+            <td>: <?= $kelahiran['tempat_lahir_bayi'] ?>, <?= $formatter->format(new DateTime($kelahiran['tanggal_lahir_bayi'])) ?></td></tr>
         <tr><td>Waktu Lahir</td><td>: <?= $kelahiran['waktu_lahir'] ?></td></tr>
         <tr><td>Anak ke-</td><td>: <?= $kelahiran['anak_ke'] ?></td></tr>
         <tr><td>Berat/Panjang</td><td>: <?= $kelahiran['berat_badan'] ?> kg / <?= $kelahiran['panjang_badan'] ?> cm</td></tr>
@@ -47,7 +53,8 @@
     <p><b>Ayah</b></p>
     <table>
         <tr><td>Nama</td><td>: <?= $kelahiran['nama_ayah'] ?></td></tr>
-        <tr><td>Tempat/Tgl Lahir</td><td>: <?= $kelahiran['tempat_lahir_ayah'] ?>, <?= date('d-m-Y', strtotime($kelahiran['tanggal_lahir_ayah'])) ?></td></tr>
+        <tr><td>Tempat/Tgl Lahir</td>
+            <td>: <?= $kelahiran['tempat_lahir_ayah'] ?>, <?= $formatter->format(new DateTime($kelahiran['tanggal_lahir_ayah'])) ?></td></tr>
         <tr><td>NIK</td><td>: <?= $kelahiran['nik_ayah'] ?></td></tr>
         <tr><td>Agama</td><td>: <?= $kelahiran['agama_ayah'] ?></td></tr>
         <tr><td>Pekerjaan</td><td>: <?= $kelahiran['pekerjaan_ayah'] ?></td></tr>
@@ -57,7 +64,8 @@
     <p><b>Ibu</b></p>
     <table>
         <tr><td>Nama</td><td>: <?= $kelahiran['nama_ibu'] ?></td></tr>
-        <tr><td>Tempat/Tgl Lahir</td><td>: <?= $kelahiran['tempat_lahir_ibu'] ?>, <?= date('d-m-Y', strtotime($kelahiran['tanggal_lahir_ibu'])) ?></td></tr>
+        <tr><td>Tempat/Tgl Lahir</td>
+            <td>: <?= $kelahiran['tempat_lahir_ibu'] ?>, <?= $formatter->format(new DateTime($kelahiran['tanggal_lahir_ibu'])) ?></td></tr>
         <tr><td>NIK</td><td>: <?= $kelahiran['nik_ibu'] ?></td></tr>
         <tr><td>Agama</td><td>: <?= $kelahiran['agama_ibu'] ?></td></tr>
         <tr><td>Pekerjaan</td><td>: <?= $kelahiran['pekerjaan_ibu'] ?></td></tr>
@@ -82,7 +90,7 @@
     <p>Demikian surat ini dibuat untuk digunakan sebagaimana mestinya.</p>
 
     <div class="ttd">
-        <p>Jayaputra, <?= date('d F Y', strtotime($kelahiran['tanggal_pengajuan'])) ?></p>
+        <p>Jayaputra, <?= $formatter->format(new DateTime($kelahiran['tanggal_pengajuan'])) ?></p>
         <p>Kepala Desa Jayaputra</p>
         <br><br>
         <p><b>(_________________________)</b></p>
